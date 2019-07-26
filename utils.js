@@ -6,3 +6,10 @@ function getAnime(document){
     });
   });
 }
+
+function getUserInfo(doc){
+  let raw = doc.find("div.user_info");
+  raw.find('div.user_twitter').remove();
+  console.log(raw);
+  return raw.html();
+}

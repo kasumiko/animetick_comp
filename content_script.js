@@ -12,7 +12,7 @@ chrome.runtime.onMessage.addListener((receive, sender, sendResponse)=>{
     const doc = $(origin);
     const res = execMethod(getAnime(doc), receive.anime, receive.method);
     embResults(res);
-    $('div.user_info').html(concatUserInfo(doc.find('div.user_info').html(),receive.info));
+    $('div.user_info').html(concatUserInfo(getUserInfo(doc),receive.info));
     $('h2').remove();
     return;
   }).catch((jqXHR, textStatus, errorThrown)=>{
@@ -31,7 +31,7 @@ function execMethod(animes, animec, method){
       case 'xor':
         return xorArray(elem,animec[i]);
       case 'or':
-        return elem.concat(animec[i]);
+        return orArray(elem,animec[i]);
       default:
         break;
     }
@@ -49,6 +49,10 @@ function xorArray(array1, array2){
   return array.filter(elem => {
     return !(array1.includes(elem) && array2.includes(elem))
   })
+}
+
+function orArray(array1, array2){
+  return [...(new Set(array1.concat(array2)))];
 }
 
 function concatUserInfo(html1, html2){

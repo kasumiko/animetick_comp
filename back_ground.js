@@ -25,7 +25,7 @@ function sendCompData (receive){
     }
     $.get(makeURL(tab, receive.username), (page, textStatus, jqXHR)=>{
       const doc = $(page);
-      const userInfo = doc.find("div.user_info").html();
+      userInfo = getUserInfo(doc);
       if(userInfo == undefined){
         alert('Invalid user name!');
         return;
