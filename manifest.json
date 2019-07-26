@@ -1,0 +1,30 @@
+{
+  "name": "Animetick-Comp",
+  "manifest_version": 2,
+  "version": "0.1",
+  "description": "Compare Animetick users.",
+  "permissions": [
+    "http://animetick.net/users/*",
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "page_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "Animetick-Comp",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": ["jquery-3.4.1.min.js","utils.js","back_ground.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://animetick.net/users/*"],
+      "js": ["jquery-3.4.1.min.js","utils.js","content_script.js"]
+    }
+  ]
+}
