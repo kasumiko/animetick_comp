@@ -32,6 +32,10 @@ function execMethod(animes, animec, method){
         return xorArray(elem,animec[i]);
       case 'or':
         return orArray(elem,animec[i]);
+      case 'pageUserOnly':
+        return aNotB(elem,animec[i]);
+      case 'selectedUserOnly':
+      return aNotB(animec[i],elem);
       default:
         break;
     }
@@ -53,6 +57,12 @@ function xorArray(array1, array2){
 
 function orArray(array1, array2){
   return [...(new Set(array1.concat(array2)))];
+}
+
+function aNotB(array1, array2){
+  return array1.filter(elem=>{
+    return !(array2.includes(elem))
+  });
 }
 
 function concatUserInfo(html1, html2){
